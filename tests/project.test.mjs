@@ -20,6 +20,8 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /Machine Learning Specialist/);
   assert.match(homePage, /Projetos selecionados/);
   assert.match(homePage, /MBA USP\/Esalq/);
+  assert.match(homePage, /TCC UFBA/);
+  assert.match(homePage, /Pesquisa anterior na UFBA/);
   assert.match(homePage, /caleomenesessantos@gmail\.com/);
 });
 

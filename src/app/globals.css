@@ -109,6 +109,8 @@ a { color: inherit; }
 .research__content > p { margin: 0; color: rgba(255,255,255,.7); line-height: 1.75; }
 .research__metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 35px; }
 .research__metrics span { padding: 9px 12px; border: 1px solid rgba(255,255,255,.22); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+.research__previous { margin: 28px 0 0; color: rgba(255,255,255,.68); font-size: .86rem; line-height: 1.7; }
+.research__previous a { color: var(--mint); font-weight: 700; text-underline-offset: 4px; white-space: nowrap; }
 
 .experience { display: grid; grid-template-columns: 230px 1fr; }
 .experience-list { border-top: 1px solid var(--line); }
