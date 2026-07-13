@@ -21,6 +21,26 @@ AWS_PROFILE=dev aws sts get-caller-identity
 Nunca registrar access keys, secret keys, tokens ou arquivos de `/home/caleo/.aws`
 no repositorio.
 
+## GitHub
+
+- Repositorio remoto: `caleo-hub/site-pessoal-caleo`
+- URL: `https://github.com/caleo-hub/site-pessoal-caleo`
+- Branch principal: `main`
+- GitHub CLI no WSL: `/home/caleo/.local/bin/gh`
+- Conta autenticada no `gh`: `caleo-hub`
+
+Comandos uteis:
+
+```bash
+gh auth status
+gh repo view caleo-hub/site-pessoal-caleo
+git status --short --branch
+git push
+```
+
+Nunca registrar tokens do GitHub no repositorio ou em logs. Se `gh` nao aparecer
+em uma sessao nao interativa, use `/home/caleo/.local/bin/gh`.
+
 ## Desenvolvimento
 
 ```bash
