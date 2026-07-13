@@ -53,6 +53,16 @@ jobs:
       id-token: write
 
     steps:
+      - name: Validate deployment variables
+        env:
+          AWS_ROLE_TO_ASSUME: ${{ vars.AWS_ROLE_TO_ASSUME }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          AMPLIFY_APP_ID: ${{ vars.AMPLIFY_APP_ID }}
+        run: |
+          test -n "$AWS_ROLE_TO_ASSUME"
+          test -n "$AWS_REGION"
+          test -n "$AMPLIFY_APP_ID"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

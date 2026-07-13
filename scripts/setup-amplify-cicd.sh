@@ -48,7 +48,6 @@ if [[ "$app_id" == "None" || -z "$app_id" ]]; then
     --platform WEB_COMPUTE \
     --access-token "$github_token" \
     --build-spec file://amplify.yml \
-    --enable-branch-auto-build \
     --query 'app.appId' \
     --output text)"
   unset github_token
@@ -69,9 +68,15 @@ if ! "$aws_cli" amplify get-branch \
     --branch-name "$branch_name" \
     --framework "Next.js - SSR" \
     --stage PRODUCTION \
-    --enable-auto-build >/dev/null
+    --no-enable-auto-build >/dev/null
   echo "Created Amplify branch ${branch_name}."
 else
+  "$aws_cli" amplify update-branch \
+    --profile "$aws_profile" \
+    --region "$aws_region" \
+    --app-id "$app_id" \
+    --branch-name "$branch_name" \
+    --no-enable-auto-build >/dev/null
   echo "Amplify branch ${branch_name} already exists."
 fi
 
