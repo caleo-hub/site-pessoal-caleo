@@ -121,22 +121,28 @@ variables existirem no repo GitHub:
 - `AWS_REGION`
 - `AMPLIFY_APP_ID`
 
-Bootstrap para criar/usar o app Amplify, branch `main`, IAM Role OIDC e
-variables do GitHub:
+Infraestrutura CDK para criar o app Amplify, branch `main` e IAM Role OIDC:
 
 ```bash
-./scripts/setup-amplify-cicd.sh
+cd infra
+npm ci
+npx cdk bootstrap --profile dev
+npx cdk deploy --profile dev \
+  --parameters GitHubAccessToken="$(gh auth token)" \
+  --outputs-file cdk-outputs.json
 ```
 
-Esse script usa por padrao:
+Depois do deploy, configurar as variables do GitHub com os outputs da stack:
 
-- `AWS_PROFILE=dev`
-- `AWS_REGION=us-east-1`
-- `REPO_FULL_NAME=caleo-hub/site-pessoal-caleo`
-- `AMPLIFY_APP_NAME=site-pessoal-caleo`
-- `AMPLIFY_BRANCH=main`
+```bash
+gh variable set AWS_ROLE_TO_ASSUME --body "<GitHubDeployRoleArn>"
+gh variable set AWS_REGION --body "us-east-1"
+gh variable set AMPLIFY_APP_ID --body "<AmplifyAppId>"
+```
 
-Nao substituir OIDC por access keys persistentes no GitHub sem pedido explicito.
+O token do GitHub entra como parametro CloudFormation `NoEcho`; nunca registrar
+o token em codigo, arquivo de outputs, logs ou mensagens. Nao substituir OIDC por
+access keys persistentes no GitHub sem pedido explicito.
 
 ## Desenvolvimento Local
 
@@ -172,7 +178,7 @@ npm run build
 
 - `amplify.yml` - build spec usado pelo AWS Amplify.
 - `.github/workflows/ci-cd.yml` - CI e deploy para Amplify.
-- `scripts/setup-amplify-cicd.sh` - bootstrap AWS/GitHub OIDC.
+- `infra/` - stack CDK do Amplify Hosting e GitHub OIDC.
 - `tests/project.test.mjs` - testes basicos do projeto e build spec.
 - `src/app/page.tsx` - pagina inicial placeholder.
 - `src/app/globals.css` - estilos globais.
@@ -186,15 +192,17 @@ npm run build
 - Criado `amplify.yml` para AWS Amplify Hosting.
 - Criado CI com typecheck, lint, testes e build.
 - Criado CD preparado para disparar deploy no Amplify via GitHub Actions + OIDC.
-- Criado script `scripts/setup-amplify-cicd.sh` para provisionar Amplify/IAM/variables.
+- Criada stack CDK em `infra/` para provisionar Amplify e IAM.
 - Configurado Git local do repo para `caleo-hub <caleomenesessantos@gmail.com>`.
 
 ## Estado Atual Importante
 
-O bootstrap AWS ainda precisa ser executado:
+O deploy da stack CDK ainda precisa ser executado:
 
 ```bash
-./scripts/setup-amplify-cicd.sh
+cd infra
+npx cdk deploy --profile dev \
+  --parameters GitHubAccessToken="$(gh auth token)"
 ```
 
 Enquanto ele nao rodar, o CI funciona, mas o job de deploy fica pulado porque as

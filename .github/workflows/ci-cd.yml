@@ -37,6 +37,12 @@ jobs:
       - name: Run CI checks
         run: npm run ci
 
+      - name: Install infrastructure dependencies
+        run: npm ci --prefix infra
+
+      - name: Validate CDK infrastructure
+        run: npm run ci --prefix infra
+
   deploy:
     name: Deploy to AWS Amplify
     runs-on: ubuntu-latest
