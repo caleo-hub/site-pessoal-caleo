@@ -1,0 +1,22 @@
+.next/
+node_modules/
+out/
+dist/
+coverage/
+.env
+.env*.local
+*.log
+*.tsbuildinfo
+
+# AWS and local credentials
+.aws/
+aws-exports.js
+amplify/.config/local-*
+amplify/mock-data/
+amplify/backend/amplify-meta.json
+amplify/backend/awscloudformation/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

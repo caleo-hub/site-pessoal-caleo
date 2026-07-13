@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Abstract architectural grid">
+  <rect width="1600" height="1000" fill="#0f172a"/>
+  <path d="M0 700C220 610 343 734 526 648C740 548 770 342 1008 316C1243 290 1380 438 1600 330V1000H0Z" fill="#0f766e"/>
+  <path d="M0 242C214 120 356 250 548 168C738 86 892 40 1080 100C1268 160 1396 272 1600 208" fill="none" stroke="#f8fafc" stroke-opacity=".18" stroke-width="2"/>
+  <path d="M160 880L510 510L782 640L1130 260L1450 430" fill="none" stroke="#facc15" stroke-opacity=".65" stroke-width="8"/>
+  <g fill="#ffffff" opacity=".26">
+    <circle cx="510" cy="510" r="10"/>
+    <circle cx="782" cy="640" r="10"/>
+    <circle cx="1130" cy="260" r="10"/>
+    <circle cx="1450" cy="430" r="10"/>
+  </g>
+</svg>
