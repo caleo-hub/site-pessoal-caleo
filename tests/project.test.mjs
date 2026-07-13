@@ -62,11 +62,22 @@ test("existe a imagem de pesquisa do TCC no site", async () => {
   assert.ok(image.length > 100000);
 });
 
+test("calcula automaticamente os anos desde 2019", async () => {
+  const years = await readFile(
+    new URL("../src/components/years-in-tech.tsx", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(years, /getFullYear\(\) - CAREER_START_YEAR/);
+  assert.match(years, /CAREER_START_YEAR = 2019/);
+});
+
 test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm ci/);
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
 
 

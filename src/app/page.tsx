@@ -1,4 +1,5 @@
 import { ProjectPreview } from "@/components/project-preview";
+import { YearsInTech } from "@/components/years-in-tech";
 
 const capabilities = [
   {
@@ -139,7 +140,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero__aside" aria-label="Resumo profissional">
-          <div><strong>7+</strong><span>anos em tecnologia e IA</span></div>
+          <div><YearsInTech /><span>anos em tecnologia e IA</span></div>
           <div><strong>2×</strong><span>AWS Certified</span></div>
           <div><strong>BR</strong><span>Salvador, Bahia</span></div>
         </div>
@@ -275,6 +276,7 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 
 
