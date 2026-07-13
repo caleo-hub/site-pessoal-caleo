@@ -3,6 +3,7 @@ import * as path from "node:path";
 import * as amplify from "aws-cdk-lib/aws-amplify";
 import * as cdk from "aws-cdk-lib";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as s3 from "aws-cdk-lib/aws-s3";
 import type { Construct } from "constructs";
 
 const REPOSITORY = "caleo-hub/site-pessoal-caleo";
@@ -23,12 +24,48 @@ export class HostingStack extends cdk.Stack {
       "utf8"
     );
 
+    const portfolioVideoBucket = new s3.Bucket(this, "PortfolioVideoBucket", {
+      bucketName: `caleo-portfolio-videos-${this.account}-${this.region}`,
+      blockPublicAccess: new s3.BlockPublicAccess({
+        blockPublicAcls: true,
+        blockPublicPolicy: false,
+        ignorePublicAcls: true,
+        restrictPublicBuckets: false
+      }),
+      cors: [
+        {
+          allowedHeaders: ["*"],
+          allowedMethods: [s3.HttpMethods.GET, s3.HttpMethods.HEAD],
+          allowedOrigins: ["*"]
+        }
+      ],
+      encryption: s3.BucketEncryption.S3_MANAGED,
+      enforceSSL: true,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      versioned: true
+    });
+
+    portfolioVideoBucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        actions: ["s3:GetObject"],
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.AnyPrincipal()],
+        resources: [portfolioVideoBucket.arnForObjects("portfolio/*")]
+      })
+    );
+
     const app = new amplify.CfnApp(this, "AmplifyApp", {
       name: "site-pessoal-caleo",
       platform: "WEB_COMPUTE",
       repository: `https://github.com/${REPOSITORY}`,
       accessToken: githubAccessToken.valueAsString,
       buildSpec,
+      environmentVariables: [
+        {
+          name: "NEXT_PUBLIC_PORTFOLIO_VIDEO_BASE_URL",
+          value: `https://${portfolioVideoBucket.bucketRegionalDomainName}/portfolio`
+        }
+      ],
       enableBranchAutoDeletion: true
     });
 
@@ -99,6 +136,15 @@ export class HostingStack extends cdk.Stack {
       description: "Temporary Amplify URL"
     });
 
+    new cdk.CfnOutput(this, "PortfolioVideoBucketName", {
+      value: portfolioVideoBucket.bucketName
+    });
+
+    new cdk.CfnOutput(this, "PortfolioVideoBaseUrl", {
+      value: `https://${portfolioVideoBucket.bucketRegionalDomainName}/portfolio`
+    });
+
     branch.addDependency(app);
   }
 }
+
