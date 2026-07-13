@@ -81,6 +81,9 @@ Variables esperadas no GitHub depois do setup:
 
 ## Deploy no Amplify Hosting
 
+Os vídeos de demonstração dos projetos principais e os caminhos de upload estão
+documentados em [docs/portfolio-videos.md](docs/portfolio-videos.md).
+
 O arquivo `amplify.yml` define o build spec usado pelo Amplify.
 Depois que o dominio for comprado, conecte o dominio personalizado no app do
 Amplify.
@@ -92,3 +95,4 @@ Amplify.
 - Adicionar foto/imagens reais.
 - Criar secoes de projetos, artigos e contato.
 - Escolher recursos AWS adicionais se houver backend persistente.
+

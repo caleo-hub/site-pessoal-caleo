@@ -1,3 +1,5 @@
+import { ProjectPreview } from "@/components/project-preview";
+
 const capabilities = [
   {
     number: "01",
@@ -31,21 +33,24 @@ const projects = [
     tag: "Enterprise RAG · AWS CDK",
     description:
       "Demonstração de RAG empresarial com Amazon Bedrock Knowledge Bases, S3 Vectors e infraestrutura temporária em AWS CDK.",
-    href: "https://github.com/caleo-hub/enterprise-rag-assistant"
+    href: "https://github.com/caleo-hub/enterprise-rag-assistant",
+    videoKey: "enterprise-rag-assistant/demo.mp4"
   },
   {
     name: "Hybrid Service Desk Agent",
     tag: "Agentic Workflow · Service Desk",
     description:
       "Agente de atendimento que combina interpretação por IA, regras de negócio, confirmação humana e criação de chamados.",
-    href: "https://github.com/caleo-hub/hybrid-service-desk-agent"
+    href: "https://github.com/caleo-hub/hybrid-service-desk-agent",
+    videoKey: "hybrid-service-desk-agent/demo.mp4"
   },
   {
     name: "Voice Field Service Copilot",
     tag: "Voice AI · Field Service",
     description:
       "Copilot de voz em português para técnicos de campo, com tools, estado de ordens e arquitetura para Amazon Nova 2 Sonic.",
-    href: "https://github.com/caleo-hub/voice-field-service-copilot"
+    href: "https://github.com/caleo-hub/voice-field-service-copilot",
+    videoKey: "voice-field-service-copilot/demo.mp4"
   },
   {
     name: "violence-detection-acoustic-scenes",
@@ -55,6 +60,8 @@ const projects = [
     href: "https://github.com/caleo-hub/violence-detection-acoustic-scenes"
   }
 ];
+
+const portfolioVideoBaseUrl = process.env.NEXT_PUBLIC_PORTFOLIO_VIDEO_BASE_URL;
 
 const experience = [
   {
@@ -186,8 +193,14 @@ export default function HomePage() {
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
-            <a className="project-card" href={project.href} target="_blank" rel="noreferrer" key={project.name}>
+            <a className={`project-card${project.videoKey ? " project-card-with-preview" : ""}`} href={project.href} target="_blank" rel="noreferrer" key={project.name}>
               <span className="project-index">0{index + 1}</span>
+              {project.videoKey ? (
+                <ProjectPreview
+                  src={portfolioVideoBaseUrl ? `${portfolioVideoBaseUrl}/${project.videoKey}` : undefined}
+                  title={project.name}
+                />
+              ) : null}
               <div>
                 <p className="project-tag">{project.tag}</p>
                 <h3>{project.name}</h3>
@@ -260,3 +273,4 @@ export default function HomePage() {
     </main>
   );
 }
+

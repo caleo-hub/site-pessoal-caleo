@@ -22,6 +22,9 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /Enterprise RAG Assistant/);
   assert.match(homePage, /Hybrid Service Desk Agent/);
   assert.match(homePage, /Voice Field Service Copilot/);
+  assert.match(homePage, /enterprise-rag-assistant\/demo\.mp4/);
+  assert.match(homePage, /hybrid-service-desk-agent\/demo\.mp4/);
+  assert.match(homePage, /voice-field-service-copilot\/demo\.mp4/);
   assert.match(homePage, /MBA USP\/Esalq/);
   assert.match(homePage, /TCC UFBA/);
   assert.match(homePage, /Pesquisa anterior na UFBA/);
@@ -31,8 +34,22 @@ test("home page contains the first portfolio iteration", () => {
 test("deployment runs once and is skipped before bootstrap", () => {
   assert.match(workflow, /vars\.AMPLIFY_APP_ID != ''/);
   assert.match(hostingStack, /enableAutoBuild: false/);
+  assert.match(hostingStack, /PortfolioVideoBucket/);
+  assert.match(hostingStack, /NEXT_PUBLIC_PORTFOLIO_VIDEO_BASE_URL/);
+  assert.match(hostingStack, /portfolio\/\*/);
+  assert.match(hostingStack, /versioned: true/);
   assert.match(hostingStack, /OpenIdConnectProvider/);
   assert.match(hostingStack, /noEcho: true/);
+});
+
+test("existe fallback para vídeos ainda não enviados", async () => {
+  const preview = await readFile(
+    new URL("../src/components/project-preview.tsx", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(preview, /Vídeo em gravação/);
+  assert.match(preview, /onError/);
 });
 
 test("Amplify build spec runs a production Next.js build", () => {
@@ -40,3 +57,4 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
