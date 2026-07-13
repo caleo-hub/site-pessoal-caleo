@@ -42,9 +42,9 @@ const projects = [
   },
   {
     name: "violence-detection-acoustic-scenes",
-    tag: "Deep Learning · Audio",
+    tag: "Pesquisa acadêmica · TCC UFBA",
     description:
-      "Pesquisa em aprendizado de máquina para detecção de violência a partir de cenas acústicas reais.",
+      "Meu TCC em Engenharia Elétrica na UFBA: aprendizado de máquina para detecção de violência a partir de cenas acústicas reais.",
     href: "https://github.com/caleo-hub/violence-detection-acoustic-scenes"
   }
 ];
@@ -210,6 +210,12 @@ export default function HomePage() {
           <div className="research__metrics">
             <span>Embeddings</span><span>Topic Modeling</span><span>Clustering</span><span>Explainable AI</span>
           </div>
+          <p className="research__previous">
+            Pesquisa anterior na UFBA: meu TCC em Engenharia Elétrica sobre detecção de violência em cenas acústicas com deep learning. {" "}
+            <a href="https://github.com/caleo-hub/violence-detection-acoustic-scenes" target="_blank" rel="noreferrer">
+              Ver projeto <ArrowIcon />
+            </a>
+          </p>
         </div>
       </section>
 
