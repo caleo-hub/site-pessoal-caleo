@@ -25,6 +25,7 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /enterprise-rag-assistant\/demo\.mp4/);
   assert.match(homePage, /hybrid-service-desk-agent\/demo\.mp4/);
   assert.match(homePage, /voice-field-service-copilot\/demo\.mp4/);
+  assert.match(homePage, /project-card-with-preview/);
   assert.match(homePage, /MBA USP\/Esalq/);
   assert.match(homePage, /TCC UFBA/);
   assert.match(homePage, /Pesquisa anterior na UFBA/);
@@ -57,4 +58,5 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
