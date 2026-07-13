@@ -281,7 +281,7 @@ export default function HomePage() {
             Foi essa combinação que me trouxe para a IA: transformar curiosidade em sistemas que aprendem, conectam conhecimento e ajudam pessoas a tomar decisões melhores.
           </p>
           <p className="personal-note__formation">
-            Sou Engenheiro Elétrico formado pela UFBA, Técnico em Automação Industrial formado pelo IFBA e atualmente faço MBA em Data Science na USP/Esalq.
+            Sou Engenheiro Eletricista formado pela UFBA, Técnico em Automação Industrial formado pelo IFBA e atualmente faço MBA em Data Science na USP/Esalq.
           </p>
         </div>
       </section>
@@ -303,6 +303,7 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 
 
