@@ -22,6 +22,11 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /Enterprise RAG Assistant/);
   assert.match(homePage, /Hybrid Service Desk Agent/);
   assert.match(homePage, /Voice Field Service Copilot/);
+  assert.match(homePage, /Conhecimento empresarial/);
+  assert.match(homePage, /reduzem o tempo de resposta/);
+  assert.match(homePage, /Operações de campo/);
+  assert.match(homePage, /inteligência de áudio/);
+  assert.match(homePage, /LLMs ajudam a descobrir estrutura/);
   assert.match(homePage, /enterprise-rag-assistant\/demo\.mp4/);
   assert.match(homePage, /hybrid-service-desk-agent\/demo\.mp4/);
   assert.match(homePage, /voice-field-service-copilot\/demo\.mp4/);
@@ -92,6 +97,7 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
 
 
