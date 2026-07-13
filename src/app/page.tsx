@@ -57,7 +57,8 @@ const projects = [
     tag: "Pesquisa acadêmica · TCC UFBA",
     description:
       "Meu TCC em Engenharia Elétrica na UFBA: aprendizado de máquina para detecção de violência a partir de cenas acústicas reais.",
-    href: "https://github.com/caleo-hub/violence-detection-acoustic-scenes"
+    href: "https://github.com/caleo-hub/violence-detection-acoustic-scenes",
+    imageSrc: "/projects/violence-detection-acoustic-scenes.png"
   }
 ];
 
@@ -193,7 +194,7 @@ export default function HomePage() {
         </div>
         <div className="project-list">
           {projects.map((project, index) => (
-            <a className={`project-card${project.videoKey ? " project-card-with-preview" : ""}`} href={project.href} target="_blank" rel="noreferrer" key={project.name}>
+            <a className={`project-card${project.videoKey || project.imageSrc ? " project-card-with-preview" : ""}`} href={project.href} target="_blank" rel="noreferrer" key={project.name}>
               <span className="project-index">0{index + 1}</span>
               <div>
                 <p className="project-tag">{project.tag}</p>
@@ -201,9 +202,10 @@ export default function HomePage() {
                 <p>{project.description}</p>
               </div>
               <span className="project-arrow"><ArrowIcon /></span>
-              {project.videoKey ? (
+              {project.videoKey || project.imageSrc ? (
                 <ProjectPreview
-                  src={portfolioVideoBaseUrl ? `${portfolioVideoBaseUrl}/${project.videoKey}` : undefined}
+                  imageSrc={project.imageSrc}
+                  src={project.videoKey && portfolioVideoBaseUrl ? `${portfolioVideoBaseUrl}/${project.videoKey}` : undefined}
                   title={project.name}
                 />
               ) : null}
@@ -273,5 +275,6 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 

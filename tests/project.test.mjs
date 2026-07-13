@@ -26,6 +26,7 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /hybrid-service-desk-agent\/demo\.mp4/);
   assert.match(homePage, /voice-field-service-copilot\/demo\.mp4/);
   assert.match(homePage, /project-card-with-preview/);
+  assert.match(homePage, /violence-detection-acoustic-scenes\.png/);
   assert.match(homePage, /MBA USP\/Esalq/);
   assert.match(homePage, /TCC UFBA/);
   assert.match(homePage, /Pesquisa anterior na UFBA/);
@@ -53,10 +54,19 @@ test("existe fallback para vídeos ainda não enviados", async () => {
   assert.match(preview, /onError/);
 });
 
+test("existe a imagem de pesquisa do TCC no site", async () => {
+  const image = await readFile(
+    new URL("../public/projects/violence-detection-acoustic-scenes.png", import.meta.url)
+  );
+
+  assert.ok(image.length > 100000);
+});
+
 test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm ci/);
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
 
