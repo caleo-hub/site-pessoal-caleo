@@ -82,7 +82,7 @@ test("calcula automaticamente os anos desde 2019", async () => {
 
 test("existe o quadro pessoal próximo ao contato", async () => {
   assert.match(homePage, /Curiosidade também é uma forma de engenharia/);
-  assert.match(homePage, /Engenheiro Elétrico formado pela UFBA/);
+  assert.match(homePage, /Engenheiro Eletricista formado pela UFBA/);
   assert.match(homePage, /MBA em Data Science na USP\/Esalq/);
 
   const portrait = await readFile(
@@ -97,6 +97,7 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
 
 
