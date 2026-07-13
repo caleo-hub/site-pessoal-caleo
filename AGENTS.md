@@ -28,6 +28,7 @@ no repositorio.
 - Branch principal: `main`
 - GitHub CLI no WSL: `/home/caleo/.local/bin/gh`
 - Conta autenticada no `gh`: `caleo-hub`
+- CI/CD: `.github/workflows/ci-cd.yml`
 
 Comandos uteis:
 
@@ -48,8 +49,22 @@ npm install
 npm run dev
 npm run typecheck
 npm run lint
+npm test
+npm run ci
 npm run build
 ```
+
+## Deploy
+
+O deploy alvo e AWS Amplify Hosting. O bootstrap esta em
+`scripts/setup-amplify-cicd.sh` e cria/usa:
+
+- app Amplify conectado a `caleo-hub/site-pessoal-caleo`;
+- branch Amplify `main`;
+- IAM Role para GitHub Actions via OIDC;
+- variables do GitHub `AWS_ROLE_TO_ASSUME`, `AWS_REGION` e `AMPLIFY_APP_ID`.
+
+Nao substituir OIDC por access keys persistentes no GitHub sem pedido explicito.
 
 ## Decisoes iniciais
 
