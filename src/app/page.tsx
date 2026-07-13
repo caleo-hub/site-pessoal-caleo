@@ -27,18 +27,25 @@ const capabilities = [
 
 const projects = [
   {
-    name: "agent-from-scratch",
-    tag: "LangGraph · CopilotKit",
+    name: "Enterprise RAG Assistant",
+    tag: "Enterprise RAG · AWS CDK",
     description:
-      "Fundação para aplicações interativas de agentes de IA, explorando orquestração e experiências generativas.",
-    href: "https://github.com/caleo-hub/agent-from-scratch"
+      "Demonstração de RAG empresarial com Amazon Bedrock Knowledge Bases, S3 Vectors e infraestrutura temporária em AWS CDK.",
+    href: "https://github.com/caleo-hub/enterprise-rag-assistant"
   },
   {
-    name: "VectorStoreAPI",
-    tag: "RAG · Vector Search",
+    name: "Hybrid Service Desk Agent",
+    tag: "Agentic Workflow · Service Desk",
     description:
-      "Experimentos com armazenamento vetorial e APIs de recuperação para aplicações orientadas por contexto.",
-    href: "https://github.com/caleo-hub/VectorStoreAPI"
+      "Agente de atendimento que combina interpretação por IA, regras de negócio, confirmação humana e criação de chamados.",
+    href: "https://github.com/caleo-hub/hybrid-service-desk-agent"
+  },
+  {
+    name: "Voice Field Service Copilot",
+    tag: "Voice AI · Field Service",
+    description:
+      "Copilot de voz em português para técnicos de campo, com tools, estado de ordens e arquitetura para Amazon Nova 2 Sonic.",
+    href: "https://github.com/caleo-hub/voice-field-service-copilot"
   },
   {
     name: "violence-detection-acoustic-scenes",
@@ -171,7 +178,7 @@ export default function HomePage() {
         <div className="section-heading">
           <div>
             <div className="section-label">Projetos selecionados</div>
-            <h2>Pesquisa que vira código.</h2>
+            <h2>Produtos, agentes e pesquisa em código.</h2>
           </div>
           <a className="text-link" href="https://github.com/caleo-hub?tab=repositories" target="_blank" rel="noreferrer">
             Ver todos no GitHub <ArrowIcon />
