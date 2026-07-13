@@ -25,6 +25,7 @@ test("home page contains the first portfolio iteration", () => {
   assert.match(homePage, /enterprise-rag-assistant\/demo\.mp4/);
   assert.match(homePage, /hybrid-service-desk-agent\/demo\.mp4/);
   assert.match(homePage, /voice-field-service-copilot\/demo\.mp4/);
+  assert.match(homePage, /audioToggle: true/);
   assert.match(homePage, /project-card-with-preview/);
   assert.match(homePage, /violence-detection-acoustic-scenes\.png/);
   assert.match(homePage, /MBA USP\/Esalq/);
@@ -52,6 +53,8 @@ test("existe fallback para vídeos ainda não enviados", async () => {
 
   assert.match(preview, /Vídeo em gravação/);
   assert.match(preview, /onError/);
+  assert.match(preview, /Ative o áudio/);
+  assert.match(preview, /muted=\{!audioEnabled\}/);
 });
 
 test("existe a imagem de pesquisa do TCC no site", async () => {
@@ -89,6 +92,7 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /npm run build/);
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
+
 
 
 

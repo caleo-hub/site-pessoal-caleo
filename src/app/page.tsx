@@ -52,7 +52,8 @@ const projects = [
     description:
       "Copilot de voz em português para técnicos de campo, com tools, estado de ordens e arquitetura para Amazon Nova 2 Sonic.",
     href: "https://github.com/caleo-hub/voice-field-service-copilot",
-    videoKey: "voice-field-service-copilot/demo.mp4"
+    videoKey: "voice-field-service-copilot/demo.mp4",
+    audioToggle: true
   },
   {
     name: "violence-detection-acoustic-scenes",
@@ -208,6 +209,7 @@ export default function HomePage() {
                 <ProjectPreview
                   imageSrc={project.imageSrc}
                   src={project.videoKey && portfolioVideoBaseUrl ? `${portfolioVideoBaseUrl}/${project.videoKey}` : undefined}
+                  audioToggle={project.audioToggle}
                   title={project.name}
                 />
               ) : null}
@@ -301,6 +303,7 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 
 
