@@ -1,34 +1,45 @@
 # AGENTS.md
 
+Contexto operacional para agentes trabalhando no repo `site-pessoal-caleo`.
+
 Responda ao usuario em portugues brasileiro.
 
-Este repositorio e o site pessoal de Caleo e deve ser mantido pronto para AWS
-Amplify Hosting.
+## Projeto
 
-## AWS
+- Nome do repo local: `site-pessoal-caleo`
+- Caminho WSL: `/home/caleo/dev/site-pessoal-caleo`
+- Repositorio GitHub: `caleo-hub/site-pessoal-caleo`
+- URL: `https://github.com/caleo-hub/site-pessoal-caleo`
+- Branch principal: `main`
+- Visibilidade: publico
+- Hosting alvo: AWS Amplify Hosting
+- Framework: Next.js com App Router e TypeScript
 
-- Profile local padrao: `dev`
-- Region: `us-east-1`
-- Identidade validada no workspace: `arn:aws:iam::528049652959:user/caleo`
-
-Use comandos AWS assim:
-
-```bash
-aws sts get-caller-identity --profile dev
-AWS_PROFILE=dev aws sts get-caller-identity
-```
-
-Nunca registrar access keys, secret keys, tokens ou arquivos de `/home/caleo/.aws`
-no repositorio.
+Este site e o site pessoal de Caleo. A base atual ainda tem conteudo placeholder
+e deve evoluir com textos, foto, projetos, artigos, contato e dominio
+personalizado.
 
 ## GitHub
 
-- Repositorio remoto: `caleo-hub/site-pessoal-caleo`
-- URL: `https://github.com/caleo-hub/site-pessoal-caleo`
-- Branch principal: `main`
-- GitHub CLI no WSL: `/home/caleo/.local/bin/gh`
-- Conta autenticada no `gh`: `caleo-hub`
-- CI/CD: `.github/workflows/ci-cd.yml`
+GitHub CLI no WSL:
+
+```bash
+/home/caleo/.local/bin/gh
+```
+
+Conta autenticada no `gh`:
+
+```text
+caleo-hub
+```
+
+Configuracao Git local desejada para commits deste repo:
+
+```ini
+[user]
+    name = caleo-hub
+    email = caleomenesessantos@gmail.com
+```
 
 Comandos uteis:
 
@@ -39,37 +50,156 @@ git status --short --branch
 git push
 ```
 
-Nunca registrar tokens do GitHub no repositorio ou em logs. Se `gh` nao aparecer
-em uma sessao nao interativa, use `/home/caleo/.local/bin/gh`.
-
-## Desenvolvimento
+Se `gh` nao aparecer em uma sessao nao interativa, use o caminho completo:
 
 ```bash
-npm install
-npm run dev
+/home/caleo/.local/bin/gh
+```
+
+Nunca registrar tokens do GitHub no repositorio, em logs ou em mensagens.
+
+## AWS
+
+AWS CLI no WSL:
+
+```bash
+/home/caleo/.local/bin/aws
+```
+
+Perfil AWS local:
+
+```text
+dev
+```
+
+Configuracao validada:
+
+- Region: `us-east-1`
+- Output: `json`
+- Conta AWS: `528049652959`
+- Identidade validada: `arn:aws:iam::528049652959:user/caleo`
+
+Comandos uteis:
+
+```bash
+aws sts get-caller-identity --profile dev
+AWS_PROFILE=dev aws sts get-caller-identity
+export AWS_PROFILE=dev
+```
+
+Nunca registrar access keys, secret keys, tokens ou arquivos de `/home/caleo/.aws`
+no repositorio.
+
+## CI/CD
+
+Workflow GitHub Actions:
+
+```text
+.github/workflows/ci-cd.yml
+```
+
+O CI roda em pull requests e pushes para `main`:
+
+```bash
 npm run typecheck
 npm run lint
 npm test
-npm run ci
 npm run build
 ```
 
-## Deploy
+Script agregado:
 
-O deploy alvo e AWS Amplify Hosting. O bootstrap esta em
-`scripts/setup-amplify-cicd.sh` e cria/usa:
+```bash
+npm run ci
+```
 
-- app Amplify conectado a `caleo-hub/site-pessoal-caleo`;
-- branch Amplify `main`;
-- IAM Role para GitHub Actions via OIDC;
-- variables do GitHub `AWS_ROLE_TO_ASSUME`, `AWS_REGION` e `AMPLIFY_APP_ID`.
+O deploy esta preparado para AWS Amplify Hosting usando OIDC do GitHub Actions,
+sem guardar AWS access key no GitHub. O job de deploy so roda quando estas
+variables existirem no repo GitHub:
+
+- `AWS_ROLE_TO_ASSUME`
+- `AWS_REGION`
+- `AMPLIFY_APP_ID`
+
+Bootstrap para criar/usar o app Amplify, branch `main`, IAM Role OIDC e
+variables do GitHub:
+
+```bash
+./scripts/setup-amplify-cicd.sh
+```
+
+Esse script usa por padrao:
+
+- `AWS_PROFILE=dev`
+- `AWS_REGION=us-east-1`
+- `REPO_FULL_NAME=caleo-hub/site-pessoal-caleo`
+- `AMPLIFY_APP_NAME=site-pessoal-caleo`
+- `AMPLIFY_BRANCH=main`
 
 Nao substituir OIDC por access keys persistentes no GitHub sem pedido explicito.
 
-## Decisoes iniciais
+## Desenvolvimento Local
 
-- Framework: Next.js com App Router e TypeScript.
-- Hosting alvo: AWS Amplify Hosting.
-- Dominio personalizado: conectar no Amplify depois da compra do dominio.
-- Backend futuro: preferir recursos gerenciados/serverless da AWS antes de
-  introduzir servidor sempre ligado.
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Rodar em desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Se a porta `3000` estiver ocupada, usar outra porta:
+
+```bash
+npm run dev -- --port 3010
+```
+
+Validar:
+
+```bash
+npm run ci
+npm run typecheck
+npm run lint
+npm test
+npm run build
+```
+
+## Arquivos Importantes
+
+- `amplify.yml` - build spec usado pelo AWS Amplify.
+- `.github/workflows/ci-cd.yml` - CI e deploy para Amplify.
+- `scripts/setup-amplify-cicd.sh` - bootstrap AWS/GitHub OIDC.
+- `tests/project.test.mjs` - testes basicos do projeto e build spec.
+- `src/app/page.tsx` - pagina inicial placeholder.
+- `src/app/globals.css` - estilos globais.
+
+## O Que Ja Foi Feito
+
+- Criado repo local em `/home/caleo/dev/site-pessoal-caleo`.
+- Criado repo GitHub publico `caleo-hub/site-pessoal-caleo`.
+- Publicado branch `main`.
+- Criada base Next.js + TypeScript.
+- Criado `amplify.yml` para AWS Amplify Hosting.
+- Criado CI com typecheck, lint, testes e build.
+- Criado CD preparado para disparar deploy no Amplify via GitHub Actions + OIDC.
+- Criado script `scripts/setup-amplify-cicd.sh` para provisionar Amplify/IAM/variables.
+- Configurado Git local do repo para `caleo-hub <caleomenesessantos@gmail.com>`.
+
+## Estado Atual Importante
+
+O bootstrap AWS ainda precisa ser executado:
+
+```bash
+./scripts/setup-amplify-cicd.sh
+```
+
+Enquanto ele nao rodar, o CI funciona, mas o job de deploy fica pulado porque as
+variables do Amplify ainda nao existem no GitHub.
+
+Durante a ultima sessao, novas chamadas ao WSL ficaram travando. Evite reiniciar
+a distro sem confirmar com o usuario, pois ha servicos de outros projetos
+rodando no WSL.
