@@ -50,10 +50,27 @@ O repositorio usa GitHub Actions em `.github/workflows/ci-cd.yml`.
 - Deploy usa OIDC do GitHub para assumir uma IAM Role na AWS, sem salvar access
   key no GitHub.
 
-Para provisionar o app Amplify, a IAM Role e as variables do GitHub:
+Para provisionar o app Amplify e a IAM Role por infraestrutura como código:
 
 ```bash
-./scripts/setup-amplify-cicd.sh
+cd infra
+npm ci
+npm run build
+npx cdk bootstrap --profile dev
+npx cdk deploy --profile dev \
+  --parameters GitHubAccessToken="$(gh auth token)" \
+  --outputs-file cdk-outputs.json
+```
+
+O token é recebido por um parâmetro CloudFormation `NoEcho`, usado somente para
+conectar o repositório ao Amplify e não deve ser salvo em arquivo ou commitado.
+
+Depois do deploy, use os outputs da stack para configurar no GitHub:
+
+```bash
+gh variable set AWS_ROLE_TO_ASSUME --body "<GitHubDeployRoleArn>"
+gh variable set AWS_REGION --body "us-east-1"
+gh variable set AMPLIFY_APP_ID --body "<AmplifyAppId>"
 ```
 
 Variables esperadas no GitHub depois do setup:
