@@ -7,10 +7,12 @@ type ProjectPreviewProps = {
   title: string;
   src?: string;
   imageSrc?: string;
+  audioToggle?: boolean;
 };
 
-export function ProjectPreview({ title, src, imageSrc }: ProjectPreviewProps) {
+export function ProjectPreview({ title, src, imageSrc, audioToggle = false }: ProjectPreviewProps) {
   const [failed, setFailed] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
   const hasVideo = Boolean(src) && !failed;
 
   return (
@@ -29,7 +31,7 @@ export function ProjectPreview({ title, src, imageSrc }: ProjectPreviewProps) {
           autoPlay
           className="project-video"
           loop
-          muted
+          muted={!audioEnabled}
           playsInline
           preload="metadata"
           aria-label={`Demonstração em vídeo de ${title}`}
@@ -43,8 +45,23 @@ export function ProjectPreview({ title, src, imageSrc }: ProjectPreviewProps) {
           <span>Vídeo em gravação</span>
         </div>
       )}
+      {hasVideo && audioToggle ? (
+        <button
+          aria-pressed={audioEnabled}
+          className="project-audio-toggle"
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setAudioEnabled((enabled) => !enabled);
+          }}
+        >
+          {audioEnabled ? "Silenciar áudio" : "Ative o áudio"}
+        </button>
+      ) : null}
     </div>
   );
 }
+
 
 
