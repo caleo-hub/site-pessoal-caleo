@@ -1,5 +1,6 @@
 import { ProjectPreview } from "@/components/project-preview";
 import { YearsInTech } from "@/components/years-in-tech";
+import Image from "next/image";
 
 const capabilities = [
   {
@@ -259,6 +260,30 @@ export default function HomePage() {
         <div>{stack.map((item) => <span key={item}>{item}</span>)}</div>
       </section>
 
+      <section className="personal-note" id="sobre-mim">
+        <div className="personal-note__portrait">
+          <Image
+            src="/about/caleo-meneses.png"
+            alt="Caléo Meneses"
+            width={400}
+            height={400}
+          />
+        </div>
+        <div className="personal-note__content">
+          <div className="section-label">Além da tecnologia</div>
+          <h2>Curiosidade também é uma forma de engenharia.</h2>
+          <p>
+            Sou fascinado por tecnologia, inteligência artificial e pelas perguntas que a ciência ainda não respondeu. Cresci entre ficção científica, histórias sobre espaço e viagem no tempo, ciência e paradoxos — ideias que misturam imaginação, rigor e a vontade de explorar o desconhecido.
+          </p>
+          <p>
+            Foi essa combinação que me trouxe para a IA: transformar curiosidade em sistemas que aprendem, conectam conhecimento e ajudam pessoas a tomar decisões melhores.
+          </p>
+          <p className="personal-note__formation">
+            Sou Engenheiro Elétrico formado pela UFBA, Técnico em Automação Industrial formado pelo IFBA e atualmente faço MBA em Data Science na USP/Esalq.
+          </p>
+        </div>
+      </section>
+
       <section className="contact" id="contato">
         <p className="eyebrow"><span /> Disponível para conexões e boas conversas</p>
         <h2>Vamos construir algo que <em>importe.</em></h2>
@@ -276,6 +301,7 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 
 
