@@ -32,34 +32,34 @@ const capabilities = [
 const projects = [
   {
     name: "Enterprise RAG Assistant",
-    tag: "Enterprise RAG · AWS CDK",
+    tag: "Conhecimento empresarial · Decisão",
     description:
-      "Demonstração de RAG empresarial com Amazon Bedrock Knowledge Bases, S3 Vectors e infraestrutura temporária em AWS CDK.",
+      "Construo assistentes que organizam o conhecimento interno e ajudam equipes a encontrar respostas confiáveis para decidir e agir com mais rapidez.",
     href: "https://github.com/caleo-hub/enterprise-rag-assistant",
     videoKey: "enterprise-rag-assistant/demo.mp4"
   },
   {
     name: "Hybrid Service Desk Agent",
-    tag: "Agentic Workflow · Service Desk",
+    tag: "Operações · Atendimento",
     description:
-      "Agente de atendimento que combina interpretação por IA, regras de negócio, confirmação humana e criação de chamados.",
+      "Desenvolvo agentes que tornam o atendimento mais consistente, reduzem o tempo de resposta e ajudam operações a encaminhar cada solicitação com mais clareza.",
     href: "https://github.com/caleo-hub/hybrid-service-desk-agent",
     videoKey: "hybrid-service-desk-agent/demo.mp4"
   },
   {
     name: "Voice Field Service Copilot",
-    tag: "Voice AI · Field Service",
+    tag: "Operações de campo · Voz",
     description:
-      "Copilot de voz em português para técnicos de campo, com tools, estado de ordens e arquitetura para Amazon Nova 2 Sonic.",
+      "Crio copilotos de voz que apoiam equipes de campo, reduzem o trabalho administrativo e mantêm as informações certas disponíveis durante o atendimento.",
     href: "https://github.com/caleo-hub/voice-field-service-copilot",
     videoKey: "voice-field-service-copilot/demo.mp4",
     audioToggle: true
   },
   {
     name: "violence-detection-acoustic-scenes",
-    tag: "Pesquisa acadêmica · TCC UFBA",
+    tag: "Inteligência de áudio · TCC UFBA",
     description:
-      "Meu TCC em Engenharia Elétrica na UFBA: aprendizado de máquina para detecção de violência a partir de cenas acústicas reais.",
+      "Pesquisa em inteligência de áudio e deep learning para reconhecer padrões complexos em cenas acústicas reais, na fronteira entre sinais, aprendizagem e percepção computacional.",
     href: "https://github.com/caleo-hub/violence-detection-acoustic-scenes",
     imageSrc: "/projects/violence-detection-acoustic-scenes.png"
   }
@@ -229,9 +229,9 @@ export default function HomePage() {
         </div>
         <div className="research__content">
           <div className="section-label section-label--light">Pesquisa atual · MBA USP/Esalq</div>
-          <h2>Clustering de chamados de Service Desk com apoio de LLMs.</h2>
+          <h2>Quando LLMs ajudam a descobrir estrutura em dados não estruturados.</h2>
           <p>
-            Investigo como o pré-processamento semântico controlado por modelos de linguagem pode melhorar a coesão, interpretabilidade e utilidade operacional de pipelines tradicionais de aprendizado não supervisionado.
+            No MBA em Data Science, investigo como modelos de linguagem podem ampliar a análise de dados não estruturados e gerar conhecimento útil para operações complexas.
           </p>
           <div className="research__metrics">
             <span>Embeddings</span><span>Topic Modeling</span><span>Clustering</span><span>Explainable AI</span>
@@ -303,6 +303,7 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 
 
