@@ -2,6 +2,62 @@ import { ProjectPreview } from "@/components/project-preview";
 import { YearsInTech } from "@/components/years-in-tech";
 import Image from "next/image";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://caleosantos.com/#person",
+      name: "Caléo Meneses",
+      url: "https://caleosantos.com/",
+      image: "https://caleosantos.com/about/caleo-meneses.png",
+      jobTitle: ["Machine Learning Specialist", "Agentic AI Engineer"],
+      sameAs: [
+        "https://www.linkedin.com/in/caleomeneses",
+        "https://github.com/caleo-hub",
+      ],
+      alumniOf: [
+        {
+          "@type": "CollegeOrUniversity",
+          name: "Universidade Federal da Bahia",
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Instituto Federal da Bahia",
+        },
+      ],
+      knowsAbout: [
+        "Machine Learning",
+        "Agentic AI",
+        "Retrieval-Augmented Generation",
+        "Model Context Protocol",
+        "Cloud Computing",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://caleosantos.com/#website",
+      url: "https://caleosantos.com/",
+      name: "Caléo Meneses",
+      description:
+        "Site profissional de Caléo Meneses sobre Machine Learning, Agentic AI e sistemas cloud-native.",
+      inLanguage: "pt-BR",
+      publisher: { "@id": "https://caleosantos.com/#person" },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://caleosantos.com/#profilepage",
+      url: "https://caleosantos.com/",
+      name: "Caléo Meneses | Machine Learning & Agentic AI",
+      description:
+        "Perfil profissional, projetos e pesquisa de Caléo Meneses em Machine Learning e Agentic AI.",
+      inLanguage: "pt-BR",
+      isPartOf: { "@id": "https://caleosantos.com/#website" },
+      mainEntity: { "@id": "https://caleosantos.com/#person" },
+    },
+  ],
+};
+
 const capabilities = [
   {
     number: "01",
@@ -107,7 +163,14 @@ function ArrowIcon() {
 
 export default function HomePage() {
   return (
-    <main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <main>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Caléo Meneses — início">
           CM<span>.</span>
@@ -300,7 +363,8 @@ export default function HomePage() {
         </div>
         <a href="#inicio">Voltar ao topo ↑</a>
       </footer>
-    </main>
+      </main>
+    </>
   );
 }
 

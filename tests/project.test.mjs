@@ -98,6 +98,34 @@ test("Amplify build spec runs a production Next.js build", () => {
   assert.match(amplifySpec, /baseDirectory: \.next/);
 });
 
+test("publica metadados e rotas de SEO", async () => {
+  const layout = await readFile(
+    new URL("../src/app/layout.tsx", import.meta.url),
+    "utf8"
+  );
+  const robots = await readFile(
+    new URL("../src/app/robots.ts", import.meta.url),
+    "utf8"
+  );
+  const sitemap = await readFile(
+    new URL("../src/app/sitemap.ts", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(layout, /metadataBase: new URL\("https:\/\/caleosantos\.com"\)/);
+  assert.match(layout, /canonical: "\/"/);
+  assert.match(layout, /summary_large_image/);
+  assert.match(robots, /caleosantos\.com\/sitemap\.xml/);
+  assert.match(sitemap, /https:\/\/caleosantos\.com\//);
+});
+
+test("publica dados estruturados do perfil profissional", () => {
+  assert.match(homePage, /"@type": "Person"/);
+  assert.match(homePage, /"@type": "WebSite"/);
+  assert.match(homePage, /"@type": "ProfilePage"/);
+  assert.match(homePage, /application\/ld\+json/);
+});
+
 
 
 
