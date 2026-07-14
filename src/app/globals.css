@@ -140,6 +140,8 @@ a { color: inherit; }
 .personal-note__content { max-width: 780px; }
 .personal-note__content h2 { max-width: 700px; margin: 17px 0 25px; font: 500 clamp(2.3rem, 4.3vw, 4.3rem)/1.04 "Manrope", sans-serif; letter-spacing: -.06em; }
 .personal-note__content p { max-width: 760px; margin: 0; color: var(--muted); line-height: 1.75; }
+.personal-note__content p a { color: var(--green); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.personal-note__content p a:hover { text-decoration-thickness: 2px; }
 .personal-note__content p + p { margin-top: 18px; }
 .personal-note__formation { color: var(--green) !important; font-weight: 600; }
 

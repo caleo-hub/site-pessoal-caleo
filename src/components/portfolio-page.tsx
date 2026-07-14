@@ -292,7 +292,10 @@ const pageCopy = {
     personalLabel: "Além da tecnologia",
     personalTitle: "Curiosidade também é uma forma de engenharia.",
     personalOne:
-      "Sou fascinado por tecnologia, inteligência artificial e pelas perguntas que a ciência ainda não respondeu. Cresci entre ficção científica, histórias sobre espaço e viagem no tempo, ciência e paradoxos — ideias que misturam imaginação, rigor e a vontade de explorar o desconhecido.",
+      "Minha curiosidade por tecnologia nasceu em família, entre computadores, ficção científica e conversas com meu pai sobre inteligência artificial. Essa ",
+    personalReportLink: "história",
+    personalOneAfter:
+      " também fortaleceu em mim o compromisso de ampliar o acesso à educação tecnológica para jovens negros e periféricos.",
     personalTwo:
       "Foi essa combinação que me trouxe para a IA: transformar curiosidade em sistemas que aprendem, conectam conhecimento e ajudam pessoas a tomar decisões melhores.",
     formation:
@@ -345,7 +348,10 @@ const pageCopy = {
     personalLabel: "Beyond technology",
     personalTitle: "Curiosity is also a form of engineering.",
     personalOne:
-      "I am fascinated by technology, artificial intelligence, and the questions science has yet to answer. I grew up surrounded by science fiction, stories about space and time travel, science, and paradoxes — ideas that combine imagination, rigor, and the drive to explore the unknown.",
+      "My curiosity about technology began at home, through computers, science fiction, and conversations with my father about artificial intelligence. That ",
+    personalReportLink: "story",
+    personalOneAfter:
+      " also shaped my commitment to expanding access to technology education for Black and underserved young people.",
     personalTwo:
       "That combination brought me to AI: turning curiosity into systems that learn, connect knowledge, and help people make better decisions.",
     formation:
@@ -535,7 +541,17 @@ export function PortfolioPage({ locale }: { locale: Locale }) {
         <div className="personal-note__content">
           <div className="section-label">{text.personalLabel}</div>
           <h2>{text.personalTitle}</h2>
-          <p>{text.personalOne}</p>
+          <p>
+            {text.personalOne}
+            <a
+              href="https://www.terra.com.br/visao-do-corre/corre-pro-futuro/como-a-tecnologia-e-heranca-de-familia-em-favela-de-salvador,4a4af9d10711365767976ee0dbff9ddbe45vy68c.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {text.personalReportLink}
+            </a>
+            {text.personalOneAfter}
+          </p>
           <p>{text.personalTwo}</p>
           <p className="personal-note__formation">{text.formation}</p>
         </div>
