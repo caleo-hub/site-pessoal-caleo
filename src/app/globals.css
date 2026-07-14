@@ -25,7 +25,12 @@ a { color: inherit; }
 .brand span { color: var(--mint); }
 .site-header nav { display: flex; gap: 36px; }
 .site-header nav a, .header-contact { font-size: .86rem; font-weight: 600; text-decoration: none; }
-.header-contact { justify-self: end; display: flex; align-items: center; gap: 8px; }
+.header-actions { justify-self: end; display: flex; align-items: center; gap: 22px; }
+.header-contact { display: flex; align-items: center; gap: 8px; }
+.language-switcher { display: flex; align-items: center; gap: 7px; font-size: .7rem; font-weight: 700; letter-spacing: .08em; }
+.language-switcher a { color: rgba(255,255,255,.55); text-decoration: none; }
+.language-switcher a[aria-current="page"] { color: var(--mint); }
+.language-switcher span { color: rgba(255,255,255,.25); }
 .site-header a { transition: color .2s ease; }
 .site-header a:hover { color: var(--mint); }
 
@@ -154,7 +159,8 @@ footer div { display: flex; gap: 28px; } footer a { text-underline-offset: 4px; 
 }
 
 @media (max-width: 620px) {
-  .site-header { height: 72px; padding: 0 20px; } .header-contact { font-size: .75rem; }
+  .site-header { height: 72px; padding: 0 20px; } .header-contact { display: none; }
+  .header-actions { gap: 0; }
   .hero { min-height: 760px; padding: 125px 22px 85px; } .hero h1 { font-size: clamp(3rem, 15vw, 4.7rem); }
   .hero__lead { font-size: .95rem; } .hero__actions { flex-direction: column; } .button { justify-content: space-between; }
   .scroll-cue { left: 22px; }

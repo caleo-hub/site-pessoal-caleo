@@ -4,7 +4,7 @@ import { test } from "node:test";
 
 const packageJson = JSON.parse(await readFile("package.json", "utf8"));
 const amplifySpec = await readFile("amplify.yml", "utf8");
-const homePage = await readFile("src/app/page.tsx", "utf8");
+const homePage = await readFile("src/components/portfolio-page.tsx", "utf8");
 const workflow = await readFile(".github/workflows/ci-cd.yml", "utf8");
 const hostingStack = await readFile("infra/lib/hosting-stack.ts", "utf8");
 
@@ -111,9 +111,13 @@ test("publica metadados e rotas de SEO", async () => {
     new URL("../src/app/sitemap.ts", import.meta.url),
     "utf8"
   );
+  const portuguesePage = await readFile(
+    new URL("../src/app/page.tsx", import.meta.url),
+    "utf8"
+  );
 
   assert.match(layout, /metadataBase: new URL\("https:\/\/caleosantos\.com"\)/);
-  assert.match(layout, /canonical: "\/"/);
+  assert.match(portuguesePage, /canonical: "\/"/);
   assert.match(layout, /summary_large_image/);
   assert.match(robots, /caleosantos\.com\/sitemap\.xml/);
   assert.match(sitemap, /https:\/\/caleosantos\.com\//);
@@ -124,6 +128,39 @@ test("publica dados estruturados do perfil profissional", () => {
   assert.match(homePage, /"@type": "WebSite"/);
   assert.match(homePage, /"@type": "ProfilePage"/);
   assert.match(homePage, /application\/ld\+json/);
+});
+
+test("publica uma versão completa em inglês", async () => {
+  const englishPage = await readFile(
+    new URL("../src/app/en/page.tsx", import.meta.url),
+    "utf8"
+  );
+  const proxy = await readFile(
+    new URL("../src/proxy.ts", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(homePage, /Building AI systems that make it to/);
+  assert.match(homePage, /Curiosity is also a form of engineering/);
+  assert.match(englishPage, /canonical: "\/en"/);
+  assert.match(englishPage, /<PortfolioPage locale="en"/);
+  assert.match(proxy, /accept-language/);
+  assert.match(proxy, /site_locale/);
+});
+
+test("conecta as versões com hreflang", async () => {
+  const portuguesePage = await readFile(
+    new URL("../src/app/page.tsx", import.meta.url),
+    "utf8"
+  );
+  const sitemap = await readFile(
+    new URL("../src/app/sitemap.ts", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(portuguesePage, /"pt-BR": "\/"/);
+  assert.match(portuguesePage, /en: "\/en"/);
+  assert.match(sitemap, /https:\/\/caleosantos\.com\/en/);
 });
 
 

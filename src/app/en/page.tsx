@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Caléo Meneses | Machine Learning & Agentic AI",
   description:
-    "Machine Learning Specialist e Agentic AI Engineer. Agentes de IA, RAG, MCP e plataformas cloud-native prontas para produção.",
+    "Machine Learning Specialist and Agentic AI Engineer building AI agents, RAG systems, and production-ready cloud-native platforms.",
   alternates: {
-    canonical: "/",
+    canonical: "/en",
     languages: {
       "pt-BR": "/",
       en: "/en",
@@ -16,21 +16,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Caléo Meneses | Machine Learning & Agentic AI",
     description:
-      "Machine Learning Specialist e Agentic AI Engineer. Agentes de IA, RAG, MCP e plataformas cloud-native prontas para produção.",
-    url: "/",
+      "Machine Learning Specialist and Agentic AI Engineer building AI agents, RAG systems, and production-ready cloud-native platforms.",
+    url: "/en",
     siteName: "Caléo Meneses",
     type: "profile",
-    locale: "pt_BR",
-    alternateLocale: ["en_US"],
+    locale: "en_US",
+    alternateLocale: ["pt_BR"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Caléo Meneses | Machine Learning & Agentic AI",
     description:
-      "Machine Learning Specialist e Agentic AI Engineer. Agentes de IA, RAG, MCP e plataformas cloud-native prontas para produção.",
+      "Machine Learning Specialist and Agentic AI Engineer building AI agents, RAG systems, and production-ready cloud-native platforms.",
   },
 };
 
-export default function HomePage() {
-  return <PortfolioPage locale="pt" />;
+export default function EnglishHomePage() {
+  return <PortfolioPage locale="en" />;
 }

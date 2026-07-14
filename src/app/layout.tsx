@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,9 +10,6 @@ export const metadata: Metadata = {
   },
   description:
     "Machine Learning Specialist e Agentic AI Engineer. Agentes de IA, RAG, MCP e plataformas cloud-native prontas para produção.",
-  alternates: {
-    canonical: "/",
-  },
   authors: [{ name: "Caléo Meneses", url: "https://caleosantos.com" }],
   creator: "Caléo Meneses",
   publisher: "Caléo Meneses",
@@ -43,13 +41,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const locale = requestHeaders.get("x-site-locale") === "en" ? "en" : "pt-BR";
+
   return (
-    <html lang="pt-BR">
+    <html lang={locale}>
       <body>{children}</body>
     </html>
   );
